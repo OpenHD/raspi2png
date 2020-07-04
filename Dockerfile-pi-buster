@@ -1,0 +1,24 @@
+FROM openhd/2020-05-27-raspios-buster-lite-armhf:v1
+
+COPY .git /data/.git/
+COPY Makefile /data/
+COPY package.sh /data/
+COPY raspi2png.c /data/
+
+RUN apt update
+
+RUN apt -y install git
+
+RUN apt -y install ruby-dev
+
+RUN apt -y install python-pip
+
+RUN gem install fpm
+
+RUN pip install cloudsmith-cli
+
+WORKDIR /data
+
+ARG CLOUDSMITH_API_KEY=000000000000
+
+RUN /data/package.sh pi buster
