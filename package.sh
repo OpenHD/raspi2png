@@ -10,7 +10,7 @@ if [[ "${PLATFORM}" == "pi" ]]; then
     PACKAGE_ARCH="armhf"
 fi
 
-apt install libpng-dev || exit 1
+apt -y install libpng-dev || exit 1
 
 
 PACKAGE_NAME=raspi2png
